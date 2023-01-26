@@ -1,1 +1,0 @@
-{"mappings":"ACAA","sources":["index.e60faa14.css","src/styles.css"],"sourcesContent":["a {\n  height: 100%;\n  text-decoration: none;\n  display: block;\n}\n\n/*# sourceMappingURL=index.e60faa14.css.map */\n","a {\n  text-decoration: none;\n  display: block;\n  height: 100%;\n}\n"],"names":[],"version":3,"file":"index.e60faa14.css.map"}
