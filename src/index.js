@@ -52,7 +52,7 @@ async function onSearch(e) {
 async function onLoadMore() {
   apiService.incrementPage();
   try {
-    const images = await apiService.fetchImg();
+    const images = await apiService.fetchImages();
     apiService.counterImages += images.hits.length;
     if (apiService.counterImages === images.totalHits) {
       refs.loadMoreButton.classList.add('hidden');
