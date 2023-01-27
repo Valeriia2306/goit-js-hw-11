@@ -70,6 +70,7 @@ async function onLoadMore() {
   }
 }
 
+// IntersectionObserver
 const options = {
   rootMargin: '100px',
 };
