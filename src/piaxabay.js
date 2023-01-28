@@ -17,7 +17,7 @@ export default class NewApiService {
       orientation: 'horizontal',
       safesearch: true,
       page: this.page,
-      per_page: 20,
+      per_page: 40,
     });
     const url = `${BASE_URL}?${searchParameters}`;
 

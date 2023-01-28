@@ -13,7 +13,7 @@ const simpleLightbox = new SimpleLightbox('.gallery a', {
 });
 
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMoreButton.addEventListener('onClick', onLoadMore);
+refs.loadMoreButton.addEventListener('click', onLoadMore);
 refs.loadMoreButton.classList.add('hidden');
 
 async function onSearch(e) {
@@ -32,7 +32,7 @@ async function onSearch(e) {
     const images = await apiService.fetchImages();
     apiService.counterImages = images.hits.length;
 
-    if (apiService.counterImages < 40) {
+    if (apiService.counterImages < 20) {
       refs.loadMoreButton.classList.add('hidden');
     }
     if (apiService.counterImages === 0) {
@@ -69,17 +69,3 @@ async function onLoadMore() {
     );
   }
 }
-
-const options = {
-  rootMargin: '100px',
-};
-
-const loadMore = entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      onLoadMore();
-    }
-  });
-};
-const observer = new IntersectionObserver(loadMore, options);
-observer.observe(refs.loadMoreButton);
