@@ -32,7 +32,7 @@ async function onSearch(e) {
     const images = await apiService.fetchImages();
     apiService.counterImages = images.hits.length;
 
-    if (apiService.counterImages < 20) {
+    if (apiService.counterImages < 40) {
       refs.loadMoreButton.classList.add('hidden');
     }
     if (apiService.counterImages === 0) {
