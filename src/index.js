@@ -48,7 +48,7 @@ async function onSearch(e) {
     console.log(error.message);
   }
 }
-
+// Function on Load
 async function onLoadMore() {
   apiService.incrementPage();
   try {
