@@ -24,8 +24,6 @@ async function onSearch(e) {
     return;
   }
 
-  refs.loadMoreButton.classList.add('hidden');
-
   refs.gallery.innerHTML = '';
   apiService.search = inputValue;
   apiService.resetPage();
@@ -34,17 +32,16 @@ async function onSearch(e) {
     const images = await apiService.fetchImages();
     apiService.counterImages = images.hits.length;
 
+    if (apiService.counterImages < 40) {
+      refs.loadMoreButton.classList.add('hidden');
+    }
     if (apiService.counterImages === 0) {
       return Notiflix.Notify.failure('Nothing was found for your request');
     }
 
-    if (images.total > 40) {
-      refs.loadMoreButton.classList.remove('hidden');
-    }
-
     Notiflix.Notify.info(`Hooray! We found ${images.totalHits} images.`);
 
-    renderCards(images.hits);
+    await renderCards(images.hits);
     simpleLightbox.refresh();
     refs.loadMoreButton.classList.remove('hidden');
   } catch (error) {
@@ -59,12 +56,12 @@ async function onLoadMore() {
     apiService.counterImages += images.hits.length;
     if (apiService.counterImages === images.totalHits) {
       refs.loadMoreButton.classList.add('hidden');
-      Notiflix.Notify.warning(
+      return Notiflix.Notify.warning(
         "We're sorry, but you've reached the end of search results."
       );
     }
-    renderCards(images.hits);
-    simpleLightbox.refresh();
+    await renderCards(images.hits);
+    await simpleLightbox.refresh();
   } catch (error) {
     refs.loadMoreButton.classList.add('hidden');
     return Notiflix.Notify.warning(
