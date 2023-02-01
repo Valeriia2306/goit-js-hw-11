@@ -36,8 +36,8 @@ async function onSearch(e) {
       return Notiflix.Notify.failure('Nothing was found for your request');
     }
 
-    if (apiService.counterImages < 40) {
-      refs.loadMoreButton.classList.add('hidden');
+    if (apiService.counterImages > 40) {
+      refs.loadMoreButton.classList.remove('hidden');
     }
 
     Notiflix.Notify.info(`Hooray! We found ${images.totalHits} images.`);
